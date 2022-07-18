@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {ErrorBoundary, BuggyCounter} from "./components/errorHandling/errorHandling";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h2>This App is Used For Error Handling Demo</h2>
+      </div>
+      <hr />
+      <ErrorBoundary>
+        <h5>These counters are within the same boundary.</h5>
+        <BuggyCounter />
+        <BuggyCounter />
+      </ErrorBoundary>
+      <div>
+        <h5>These counters are within their own boundaries.</h5>
+        <ErrorBoundary>
+          <BuggyCounter />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <BuggyCounter />
+        </ErrorBoundary>
+      </div>
     </div>
   );
 }
